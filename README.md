@@ -1,6 +1,6 @@
 # Respond Spectra / 响应邻域虚拟样本光谱扩增
 
-本仓库提供响应邻域虚拟样本扩增（ReNVSA）实验的代码，用于小样本光谱建模。这里仅发布代码；输入数据、实验结果、预测值、图像、日志和论文文件均不包含在内。
+本仓库提供响应邻域虚拟样本扩增（RenSA）实验的代码，用于小样本光谱建模。这里仅发布代码；输入数据、实验结果、预测值、图像、日志和论文文件均不包含在内。
 
 This repository provides the code for response-neighbor virtual sample augmentation (ReNVSA) experiments in small-sample spectral modeling. It is a code-only release: input data, results, predictions, figures, logs, and manuscript files are excluded.
 
@@ -18,7 +18,7 @@ This repository provides the code for response-neighbor virtual sample augmentat
 | Directory | 中文说明 | English description |
 | --- | --- | --- |
 | `respond_spectra/` | 增强、预处理、特征选择与评估核心代码。 | Core augmentation, preprocessing, feature selection, and evaluation code. |
-| `renvsa_experiments/` | ReNVSA 主实验、基线和敏感性分析。 | Main ReNVSA protocol, baselines, and sensitivity analyses. |
+| `rensa_experiments/` | ReNSA 主实验、基线和敏感性分析。 | Main RenSA protocol, baselines, and sensitivity analyses. |
 | `examples/` | 其他实验、对比、搜索和诊断脚本。 | Additional experiments, comparisons, searches, and diagnostics. |
 | `tests/` | 单元测试与快速检查。 | Unit and smoke tests. |
 
@@ -138,7 +138,7 @@ RESPOND_SPECTRA_RUN_TORCH_TESTS=1 python -m pytest tests/test_augmentation.py::t
 
 | 中文实验 | Experiment | Script |
 | --- | --- | --- |
-| 全光谱 ReNVSA | Full-spectrum ReNVSA | `renvsa_experiments/run_renvsa.py` |
+| 全光谱 RenSA | Full-spectrum RenSA | `renvsa_experiments/run_rensa.py` |
 | Bjerrum 对照 | Matched Bjerrum baseline | `renvsa_experiments/run_bjerrum_baseline.py` |
 | SMOTER/SMOGN 对照 | Standard SMOTER/SMOGN baselines | `renvsa_experiments/run_smogn_smoter_baselines.py` |
 | 随机配对对照 | Matched random-pair control | `renvsa_experiments/run_random_pair_control.py` |
@@ -148,11 +148,11 @@ RESPOND_SPECTRA_RUN_TORCH_TESTS=1 python -m pytest tests/test_augmentation.py::t
 主实验和几个对照的常用命令如下；详细顺序及输出位置见 [实验说明](renvsa_experiments/README.md)。 / Common commands for the main experiment and baselines are below; see the [experiment guide](renvsa_experiments/README.md) for run order and output locations.
 
 ```bash
-python renvsa_experiments/run_renvsa.py --resume
-python renvsa_experiments/run_bjerrum_baseline.py --resume
-python renvsa_experiments/run_random_pair_control.py --resume
-python renvsa_experiments/run_smogn_smoter_baselines.py --self-test
-python renvsa_experiments/run_smogn_smoter_baselines.py --resume
+python rensa_experiments/run_renvsa.py --resume
+python rensa_experiments/run_bjerrum_baseline.py --resume
+python rensa_experiments/run_random_pair_control.py --resume
+python rensa_experiments/run_smogn_smoter_baselines.py --self-test
+python rensa_experiments/run_smogn_smoter_baselines.py --resume
 ```
 
 SMOTER/SMOGN 依赖版本固定在 `pyproject.toml`。主实验与基线运行后，`summarize_smogn_smoter_comparison.py` 可计算配对对比指标。所有生成的结果目录均被 Git 忽略。 / SMOTER/SMOGN dependency versions are pinned in `pyproject.toml`. After the main and baseline runs, `summarize_smogn_smoter_comparison.py` computes paired comparison metrics. Git ignores generated result directories.
